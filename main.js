@@ -69,6 +69,8 @@ function createSquares(gridSize) {
 function enlargeSquares(size){
     let squareSize = size/gridSize;
     for (let row of grid.children){
-        console.log(row)
+        for(let tile of row){
+            if tile
+        }
     }
 }
