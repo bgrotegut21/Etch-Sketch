@@ -14,16 +14,24 @@
 </head>
 <body>
     <h1 class = "title">Etch Sketch</h1>
-    <section class = "grid-section">
-     
-        <div class = "grid"></div>
+    <section class = "grid-section-prototype">
+        <div class = "grid-prototype"></div>
     </section>
+    <section class = "grid-section">
+        <div class = "grid">
+            
+        </div>
+    </section>
+
     <section class = "mode-layer">
         <section class = "modes">
-            <button class = "pixel-mode">Pixel Mode</button>
+            <button class = "mode">Pixel Mode</button>
             
-            <button class = "etch-sketch-mode">Color</button>
+
+            <div class="color">
     
+                <input type="color" class = "color-picker" value = "#4646FB">
+            </div>
     
             <button class = "erase">Erase</button>
 
@@ -37,6 +45,7 @@
         </section>
 
     </section>
+    <script src = "main.js"></script>
 
 </body>
 </html>
