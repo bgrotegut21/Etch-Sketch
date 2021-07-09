@@ -10,11 +10,11 @@ body{
 :root {
     --size: 400px;
     --height: 200px;
-    --button-color: rgb(49, 76, 197);
+    --button-color: rgb(70, 70, 251);
 }
 
+
 body {
-    color: block;
     background:azure;
 }
 .title{
@@ -22,6 +22,7 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
     text-align: center;
+    font-family: 'Cabin Sketch', cursive;
 
 }
 
@@ -48,7 +49,7 @@ body {
     width: var(--size);
     height: var(--height);
     display:grid;
-    grid-template-columns:3fr 1fr;
+    grid-template-columns:2fr 1fr;
     gap:10px;
     text-align: center;
     
@@ -62,16 +63,17 @@ body {
 .text-size {
     display: flex;
     justify-content: center;
-    background: red;
-    background:white;
+    background:rgb(149, 149, 149);
 
 }
 
 .text-button {
-    width:40%;
+    width:20%;
     border: none;
     font-size: large;
     outline:none;
+    background: rgb(147, 147, 147);
+    color:white;    
 }
 
 
@@ -83,10 +85,45 @@ body {
 
 button {
     border:none;
-    background:rgb(78, 78, 229);
-    color: rgb(0, 0, 0);
+    background:var(--button-color);
+    color:white;
+    font-family: Helvetica,Arial,sans-serif;
 }
 
-.text-button {
-    background:78
+
+.clear {
+    grid-column: span 2;
+}
+
+
+@media screen and (max-width: 420px ){
+    :root{
+        --size:300px;
+        --height:150px;
+    }
+}
+
+@media screen and (max-width: 320px ){
+    :root{
+        --size:200px;
+        --height:100px;
+    }
+    .text-button {
+        font-size: x-small;
+    }
+}
+
+@media screen and (min-width: 950px){
+    :root {
+        --size:500px;
+        --height:250px;
+    }
+
+}
+
+@media screen and (max-width: 200px){
+    :root {
+        --size:100px;
+        --height:50px;
+    }
 }
