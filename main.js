@@ -9,16 +9,20 @@ let sizeButton = document.querySelector(".change-size");
 let clear = document.querySelector(".clear");
 
 let size  = 400;
-let gridSize;
+let gridSize = 10;
+let created = false;
+
+createSquares(gridSize);
 
 
 function checkMediaQuery (mediaQuery){
     console.log(mediaQuery)
     if (mediaQuery.query.matches){
-
         size = mediaQuery.size;
+        enlargeSquares(size)
     } else {
         size = 400;
+        enlargeSquares(size)
     }
 }
 
@@ -45,8 +49,6 @@ function styleSquare(square,squareSize){
 
 }
 
-
-
 function createSquares(gridSize) {
     let squareSize = size/gridSize;
     for (let size = 0; size < gridSize; size++){
@@ -62,6 +64,11 @@ function createSquares(gridSize) {
         }
          
     }
-}
+} 
 
-createSquares(10);
+function enlargeSquares(size){
+    let squareSize = size/gridSize;
+    for (let row of grid.children){
+        console.log(row)
+    }
+}
