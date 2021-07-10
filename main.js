@@ -9,42 +9,45 @@ let sizeButton = document.querySelector(".change-size");
 let clear = document.querySelector(".clear");
 
 let size = 400;
+let initalSize = 400
 let gridSize = 10;
 let created = false;
 
-createSquares(gridSize);
-
-
-function checkMediaQuery (mediaQuery){
-    
-    if (mediaQuery.query.matches){
-        console.log(mediaQuery.query.media)
-        console.log(mediaQuery.query)
-        console.log(mediaQuery.size)
-        size = mediaQuery.size;
-        enlargeSquares(size)
+function changeMediaScreen(mediaQuery){
+    if(mediaQuery.query.matches){
+        size = mediaQuery.size
+        enlargeSquares(size);
     } else {
-        
+        size += 100;
         enlargeSquares(size)
     }
 }
 
-let mediaQuerys = [{query: window.matchMedia("(max-width:420px)"),size:300},
-                    {query: window.matchMedia("(max-width:320px)"),size:200},
-                    {query: window.matchMedia("(min-width:950px)"),size:500},
-                    {query: window.matchMedia("(max-width:200px)"),size:100},
+function startMediaScreen(mediaQuery){
+    if(mediaQuery.query.matches){
+        size = mediaQuery.size
+        enlargeSquares(size);
+    }
+}
+
+
+let mediaQuerys = [ {query: window.matchMedia("(max-width:420px)"), size: 300},
+                    {query: window.matchMedia("(max-width:320px)"), size: 200},
+                    {query: window.matchMedia("(max-width:200px)"), size: 100}
 ]
 
-mediaQuerys.map( mediaQuery => {
-    checkMediaQuery(mediaQuery);
+mediaQuerys.map(media => {
+    startMediaScreen(media);
 })
 
-
-mediaQuerys.map(mediaQuery => {
-    mediaQuery.query.addEventListener("change", () =>{
-        checkMediaQuery(mediaQuery)
+mediaQuerys.map(media => {
+    media.query.addEventListener("change", () => {
+        changeMediaScreen(media)
     })
 })
+
+createSquares(10);
+
 colorPicker.addEventListener("change",action => {
     colorButton.style.background = action.target.value;
 })
