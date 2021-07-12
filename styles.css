@@ -11,6 +11,7 @@ body{
     --size: 400px;
     --height: 200px;
     --button-color: rgb(70, 70, 251);
+    --darker-button-color: rgb(41, 41, 249);
 }
 
 
@@ -62,6 +63,9 @@ body {
     
 }
 
+button:active {
+    background: var(--darker-button-color);
+}
 .erase {
     grid-row: 3/3;
     grid-column: 1/3;

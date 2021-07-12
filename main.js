@@ -14,6 +14,8 @@ let gridSize = 10;
 let created = false;
 let errorMessage = document.querySelector(".error");
 let squaresArray;
+let disableMode = false;
+let eraserOn = false;
 
 function changeMediaScreen(mediaQuery){
     if(mediaQuery.query.matches){
@@ -28,8 +30,6 @@ function changeMediaScreen(mediaQuery){
 function checkMediaMinScreen(mediaQuery){
 
     if (mediaQuery.query.matches){
-        console.log("it matches")
-        console.log(mediaQuery.size)
         size = mediaQuery.size
         enlargeSquares(size)
     } else {
@@ -72,8 +72,11 @@ mediaQuerys.map(media => {
 
 createSquares(10);
 colorPicker.addEventListener("change",action => {
-    color = action.target.value;
+    if(!eraserOn){
+        color = action.target.value;     
+    }
     colorButton.style.background = action.target.value;
+
 })
 
 function styleSquare(square,squareSize){
@@ -83,9 +86,6 @@ function styleSquare(square,squareSize){
     square.style.height = squareSize + "px";
 
 }
-
-
-
 
 function createSquares(gridSize) {
     let squareSize = size/gridSize;
@@ -102,27 +102,26 @@ function createSquares(gridSize) {
         }
          
     }
-    
     addEventHandler();
 } 
-
-
 
 function addEventHandler(){
     let squares = document.querySelectorAll(".square");
     squaresArray = Array.from(squares);
     squaresArray.map(square => {
-        counter = 1;
-        square.addEventListener("mouseover", changeBakground)
+        square.addEventListener("mouseover", changeBackground)
+        square.addEventListener("click",changePixelBackground);
     })
 }
 
+function changeBackground(event){
+    if (!disableMode)event.target.style.background = color;
+    else return;
+}
 
-
-
-function changeBakground(event){
-    event.target.style.background = color;
-
+function changePixelBackground(event){
+    if (disableMode)event.target.style.background = color;
+    else return;
 }
 
 function enlargeSquares(size){
@@ -157,11 +156,24 @@ function removeSquares(){
     }
 }
 
+erase.addEventListener("click",() => {
 
+    if (!eraserOn){
+        eraserOn = true;
+        color = "white";
+        erase.style.background = "rgb(41, 41, 249)";
+    } else {
+        erase.style.background = "rgb(70, 70, 251)";
+        eraserOn = false;
+        color = colorPicker.value;
+    }
+})
 
 sizeButton.addEventListener("click", () => {
     if (textBox.value < 65){
-        gridSize = textBox.value;
+        if (/\D/.test(textBox.value) || textBox.value == 0)  gridSize = 1;
+        else gridSize = Math.ceil(textBox.value);
+
         removeSquares();
         createSquares(gridSize);
     } else {
@@ -169,5 +181,14 @@ sizeButton.addEventListener("click", () => {
     }
 })
 
-
-
+mode.addEventListener("click",() => {
+    if(!disableMode){
+        disableMode = true;
+        mode.style.background = "rgb(41, 41, 249)";
+        mode.textContent = "Etch Sketch Mode"
+    } else {
+        disableMode = false;
+        mode.style.background = "rgb(70, 70, 251)";
+        mode.textContent = "Pixel Mode"
+    }
+})
