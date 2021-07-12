@@ -151,7 +151,6 @@ input[type=number] {
     .text-button {
         font-size: x-small;
     }
-
     button {
         font-size: small;
     }
@@ -162,7 +161,6 @@ input[type=number] {
         --size:500px;
         --height:250px;
     }
-
 }
 
 @media screen and (max-width: 200px){

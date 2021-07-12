@@ -28,14 +28,12 @@ function changeMediaScreen(mediaQuery){
 }
 
 function checkMediaMinScreen(mediaQuery){
-
     if (mediaQuery.query.matches){
         size = mediaQuery.size
         enlargeSquares(size)
     } else {
         size = 400
         enlargeSquares(size)
-
     }
 }
 
@@ -81,10 +79,8 @@ colorPicker.addEventListener("change",action => {
 
 function styleSquare(square,squareSize){
     square.style.background = "white";
-
     square.style.width = squareSize + "px";
-    square.style.height = squareSize + "px";
-
+    square.style.height = squareSize + "px"
 }
 
 function createSquares(gridSize) {
@@ -139,7 +135,6 @@ function timer() {
     setTimeout(() => {
         errorMessage.style.display = "none";
     },1000)
-
 }
 
 clear.addEventListener("click",() => {
